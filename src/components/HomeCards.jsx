@@ -6,7 +6,7 @@ const HomeCards = () => {
   return (
     <>
       <section>
-        <div className="flex gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-20">
           <Card bg="bg-violet-300">
             <div className="flex flex-col justify-center py-11 rounded-xl px-2 pl-10 gap-5  ">
               <span className="text-black text-2xl font-bold">
