@@ -1,8 +1,19 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import logo from "../assets/images/logo.png";
+import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
+  const LinkClass = ({ isActive }) =>
+    isActive
+      ? "rounded-md bg-blue-900 px-3 py-2 text-sm font-medium text-white"
+      : "rounded-md px-3 py-2 text-sm font-medium text-white";
+
+  const LinkClassMobile = ({ isActive }) =>
+    isActive
+      ? "block rounded-md bg-blue-900 px-3 py-2 text-base font-medium text-white"
+      : "block rounded-md px-3 py-2 text-base font-medium text-blue-300  hover:text-white";
+
   return (
     <>
       <nav className="bg-blue-700 ">
@@ -111,25 +122,15 @@ const NavBar = () => {
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex  space-x-4">
                   {/* <!-- Current: "bg-blue-900 text-white", Default: "text-blue-300 hover:bg-blue-700 hover:text-white" --> */}
-                  <a
-                    href="#"
-                    className="rounded-md bg-blue-900 px-3 py-2 text-sm font-medium text-white"
-                    aria-current="page"
-                  >
+                  <NavLink to="/" className={LinkClass}>
                     Home
-                  </a>
-                  <a
-                    href="#"
-                    className="rounded-md px-3 py-2 text-sm font-medium text-blue-300 hover:bg-blue-700 hover:text-white"
-                  >
+                  </NavLink>
+                  <NavLink to="/jobs" className={LinkClass}>
                     Jobs
-                  </a>
-                  <a
-                    href="#"
-                    className="rounded-md px-3 py-2 text-sm font-medium text-blue-300 hover:bg-blue-700 hover:text-white"
-                  >
+                  </NavLink>
+                  <NavLink to="/add-jobs" className={LinkClass}>
                     Add Jobs
-                  </a>
+                  </NavLink>
                 </div>
               </div>
             </div>
@@ -140,25 +141,15 @@ const NavBar = () => {
         <div className="sm:hidden" id="mobile-menu">
           <div className="space-y-1 px-2 pb-3 pt-2">
             {/* <!-- Current: "bg-blue-900 text-white", Default: "text-blue-300 hover:bg-blue-700 hover:text-white" --> */}
-            <a
-              href="#"
-              className="block rounded-md bg-blue-900 px-3 py-2 text-base font-medium text-white"
-              aria-current="page"
-            >
+            <NavLink to="/" className={LinkClass}>
               Home
-            </a>
-            <a
-              href="#"
-              className="block rounded-md px-3 py-2 text-base font-medium text-blue-300 hover:bg-blue-700 hover:text-white"
-            >
+            </NavLink>
+            <NavLink to="/jobs" className={LinkClass}>
               Jobs
-            </a>
-            <a
-              href="#"
-              className="block rounded-md px-3 py-2 text-base font-medium text-blue-300 hover:bg-blue-700 hover:text-white"
-            >
+            </NavLink>
+            <NavLink to="/add-jobs" className={LinkClass}>
               Add Jobs
-            </a>
+            </NavLink>
           </div>
         </div>
       </nav>

@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
+import { FaMapMarker } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const JobsListing = ({ job }) => {
   const [showFullDescription, setShowFullDescription] = useState(false);
@@ -37,17 +39,18 @@ const JobsListing = ({ job }) => {
               <span className="text-indigo-500">{job.salary}</span>
             </div>
             <hr></hr>
-            <div className="mt-5">
+            <div className="mt-5 flex gap-4 items-center">
+              <FaMapMarker className="text-rose-500" />
               <span className="text-rose-500 font-bold">{job.location}</span>
             </div>
             <div className="mt-7 ">
               <button className="w-full bg-indigo-500 hover:bg-indigo-600 h-[36px] rounded-lg">
-                <a
-                  href={`/job/${job.id}`}
+                <Link
+                  to={`/jobs/${job.id}`}
                   className="bg-indigo-500  hover:bg-indigo-600 text-white px-2 py-2  text-center text-sm"
                 >
                   Read more
-                </a>
+                </Link>
               </button>
             </div>
           </div>
