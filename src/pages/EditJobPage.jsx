@@ -1,12 +1,15 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useLoaderData, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const EditJobPage = () => {
-  const job = useLoaderData;
+const EditJobPage = ({ updateValues }) => {
+  const job = useLoaderData();
   const navigate = useNavigate();
 
+  const [id, setId] = useState("");
   const [title, setTitle] = useState("");
   const [type, setType] = useState("");
   const [location, setLocation] = useState("");
@@ -17,10 +20,11 @@ const EditJobPage = () => {
   const [contactEmail, setContactEmail] = useState("");
   const [contactPhone, setContactPhone] = useState("");
 
-  const submitForm = (e) => {
+  const updateForm = (e) => {
     e.preventDefault();
 
-    const newJob = {
+    const editJob = {
+      id,
       title,
       type,
       location,
@@ -33,17 +37,32 @@ const EditJobPage = () => {
         contactPhone: contactPhone,
       },
     };
-    toast.success("Job added successfully");
+
+    updateValues(editJob);
+    toast.success("Job Updated successfully");
     return navigate("/jobs");
   };
+
+  useEffect(() => {
+    setId(job.id);
+    setTitle(job.title);
+    setType(job.type);
+    setDescription(job.description);
+    setsalary(job.salary);
+    setLocation(job.location);
+    setCompanyName(job.company.name);
+    setCompanyDescription(job.company.description);
+    setContactEmail(job.company.contactEmail);
+    setContactPhone(job.company.contactPhone);
+  }, []);
   return (
     <>
       <section className="bg-indigo-50">
         <div className="container m-auto max-w-2xl py-24">
           <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md boarder m-4 md:m-0">
-            <h2 className="text-center font-bold text-xl">Add Job</h2>
+            <h2 className="text-center font-bold text-xl">Edit Job</h2>
 
-            <form onSubmit={submitForm}>
+            <form onSubmit={updateForm}>
               <div className="mb-4">
                 <label
                   htmlFor="type"
@@ -216,7 +235,7 @@ const EditJobPage = () => {
                   type="submit"
                   className="w-full rounded-md height-12 bg-blue-500 text-white font-bold"
                 >
-                  Add job
+                  Edit job
                 </button>
               </div>
             </form>

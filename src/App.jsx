@@ -6,7 +6,7 @@ import HomeCards from "./components/HomeCards";
 import JobsListings from "./components/JobsListings";
 import ViewAllJobs from "./components/ViewAllJobs";
 import JobsPage from "./pages/JobsPage";
-import JobPage from "./pages/JobPage";
+import JobPage, { jobLoader } from "./pages/JobPage";
 import AddJobs from "./pages/AddJobs";
 import NotFound from "./pages/NotFound";
 import {
@@ -33,10 +33,21 @@ const App = () => {
   };
 
   //delete existing job
-
   const deleteJob = async (id) => {
     const res = await fetch(`/api/jobs/${id}`, {
       method: "DELETE",
+    });
+    return;
+  };
+
+  //update values
+  const updateValues = async (editJob) => {
+    const res = await fetch(`/api/jobs/${editJob.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editJob),
     });
     return;
   };
@@ -46,10 +57,15 @@ const App = () => {
       <Route path="/" element={<MainLayout />}>
         <Route index element={<HomePage />} />
         <Route path="/jobs" element={<JobsPage />} />
-        <Route path="/jobs/:id" element={<JobPage deleteJob={deleteJob} />} />
+        <Route
+          path="/jobs/:id"
+          element={<JobPage deleteJob={deleteJob} />}
+          loader={jobLoader}
+        />
         <Route
           path="/edit-jobs/:id"
-          element={<EditJobPage deleteJob={deleteJob} />}
+          element={<EditJobPage updateValues={updateValues} />}
+          loader={jobLoader}
         />
         <Route path="/add-jobs" element={<AddJobs addJobsSubmit={addjob} />} />
         <Route path="*" element={<NotFound />} />

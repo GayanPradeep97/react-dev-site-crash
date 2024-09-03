@@ -83,6 +83,20 @@
         "contactEmail": "codelanti@gmail.com",
         "contactPhone": "452352365132"
       }
+    },
+    {
+      "id": "1826",
+      "title": "Gayan New Job",
+      "type": "Full-Time",
+      "location": "colombo 6",
+      "description": "i added new job in this company",
+      "salary": "$175K - 180K",
+      "company": {
+        "name": "codelantic",
+        "description": "codelantic is a software company, it is UK based company",
+        "contactEmail": "gayan@codelantic.com",
+        "contactPhone": "07702365236"
+      }
     }
   ]
 }
